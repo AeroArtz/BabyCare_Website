@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const checkValid = document.getElementById('validate');
 
     if (inputUsername === savedUsername && inputPassword === savedPassword) {
-      window.location.href = 'Homepage.html';
+      window.location.href = 'homepage.html';
     } else {
       checkValid.textContent = 'Invalid username or password';
     }
