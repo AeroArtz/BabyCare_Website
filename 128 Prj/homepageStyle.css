@@ -45,7 +45,7 @@ color:black;
   
   position: absolute;
   top: 15%;
-  left: 20%;
+  left: 10%;
 
 }
 
@@ -97,16 +97,77 @@ color:black;
   font-size:24px;
 }
 
-table{
+#homeTable{
   border-spacing: 28px;
   text-align: center;
   left: 25%;
   position:absolute;
 }
 
-td p{
-  color:grey;
+#homeTable td p{
+  color:#383838;
   font-family: century gothic;
   
 
 }
+
+#servicesContainer{
+
+  margin:0;
+
+}
+
+#servicesContainer table{
+  width: 80%;
+  padding-left: 50px;
+  
+  
+}
+
+#servicesContainer table th{
+  padding:10px;
+  font-family: century gothic;
+  font-size: 20px;
+  text-align: left;
+  color:#383838;
+}
+
+#servicesContainer table td{
+  padding:10px;
+  font-size: 13px;
+  font-family: century gothic;
+  color: #383838;
+}
+
+h2{
+  text-transform: uppercase;
+  font-family: century gothic;
+  font-size: 25px;
+  padding-left: 45px;
+  padding-top: 45px;
+  color: #383838;
+}
+
+#totalPrice{
+  font-family: century gothic;
+  padding-left: 40px;
+  color : #383838;
+}
+
+#checkoutButton{
+  font-family: century gothic;
+  padding: 15px 15px 15px 15px;
+  border-radius: 10px;
+  background-color: #383838;
+  color: white;
+  left: 20%;
+  position: absolute;
+  bottom: 5%;
+  left: 4%;
+}
+#checkoutButton:hover{
+  color:black;
+  background-color: white;
+}
+
+
