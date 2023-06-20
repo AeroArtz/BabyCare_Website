@@ -1,137 +1,118 @@
 <html>
-    <head>
-        <title>registration</title>
-        <link rel="stylesheet" type="text/css" href="registration_page.css">
-    </head>
-    <body>
-        <!--put in required for every tag-->
-        <form  id="registration_form" action="login.html">
-            
-            <div class="navbar">
-            
+  <head>
+    <title>registration</title>
+    <link rel="stylesheet" type="text/css" href="registration_page.css" />
+  </head>
+  <body>
+    <!--put in required for every tag-->
 
-            
-                <a href="login.html">Login</a>
-                <a href="services.html">Services</a>
-                <a href="#Vservices">View Services</a>
-                <a href="homepage.html">Home</a>
-                    
-                  
-            </div >
+    <div class="navbar">
+      <a href="login.html">Login</a>
+      <a href="services.html">Services</a>
+      <a href="#Vservices">View Services</a>
+      <a href="homepage.html">Home</a>
+    </div>
 
-            <div class="box">
-                
+    <div class="box">
+      <form action="login.html" id="registration_form">
+        <div class="form">
+          <label for="fname">First name:</label> 
+          <input
+            type="text"
+            id="fname"
+            size="30"
+            placeholder="Enter first name"
+            pattern="^[a-zA-Z]{1,}$"
+            required
+          />
+        </div>
 
-                <div class="form">
-            
-                    <label for="fname">First name:</label> <br>
-                    <input type="text" id="fname" size="30" placeholder="Enter first name" pattern="^[a-zA-Z]{1,}$" required > 
-                </div>
-            
-                <br>
+        <br>
 
-                <div class="form">
-                    <label for="lname">Last name:</label> <br>
-                    <input type="text" id="lname" size="30" placeholder="Enter last name" pattern="^[a-zA-Z]{1,}$" required> 
-                </div>
+        <div class="form">
+          <label for="lname">Last name:</label> 
+          <input
+            type="text"
+            id="lname"
+            size="30"
+            placeholder="Enter last name"
+            pattern="^[a-zA-Z]{1,}$"
+            required
+          />
+        </div>
 
-                <br>
+       <br>
 
-                <div class="form">
-                    <label for="new_username">New username:</label> <br>
-                    <input type="text" id="new_username" size="30" placeholder="Enter new username" required> 
-                </div>
+        <div class="form">
+          <label for="new_username">New username:</label> 
+          <input
+            type="text"
+            id="new_username"
+            size="30"
+            placeholder="Enter new username"
+            required
+          />
+        </div>
 
-                <br>
+        <br>
 
-                <div class="form">
-                    <label for="new_email">email id:</label> <br>
-                    <input type="email" id="new_email" size="30" placeholder="Enter your Email-ID" required> 
-                </div>
-            
-                <br>
+        <div class="form">
+          <label for="new_email">email id:</label> 
+          <input
+            type="email"
+            id="new_email"
+            size="30"
+            placeholder="Enter your Email-ID"
+            required
+          />
+        </div>
 
-                <div class="form">
-                    <label for="new_password">New Password:</label> <br>
-                    <input type="password" id="new_password" size="30" placeholder="Enter new password" required> 
-                    <br>
-                    <input type="checkbox" class="show" onclick="showPass1()">Show Password 
-                </div>
+        <br>
 
-                <br>
+        <div class="form">
+          <label for="new_password">New Password:</label> 
+          <input
+            type="password"
+            id="new_password"
+            size="30"
+            placeholder="Enter new password"
+            required
+          />
 
-                <div class="form">
-                    <label for="repeated_password">Repeat Password:</label> <br>
-                    <input type="password" id="repeated_password" size="30" placeholder="Enter password again" required> 
-                    <br>
-                    <input type="checkbox" class="show" onclick="showPass2()">Show Password
-                </div>
+          <label for="show1" class="show">
+            <input type="checkbox" id="show1" onclick="showPass1()" />Show Password
+          </label>
+        </div>
 
-                <br>
+       <br>
 
-                <div>
-                    <button type="button" onclick="passmatch()">Register</button>
-                </div>
-            
-                <br>
+        <div class="form">
+          <label for="repeated_password">Repeat Password:</label> 
+          <input
+            type="password"
+            id="repeated_password"
+            size="30"
+            placeholder="Enter password again"
+            required
+          />
+          <label for="show2" class="show">
+            <input type="checkbox" id="show2" onclick="showPass2()" />Show Password
+          </label>
+        </div>
 
-                <div>
-                    <p id="message"></p>
-                </div>
-            </div>
-        </form> 
-        
+       <br>
 
-    </body>
-    <script>
-        function showPass1() {
-
-            var x = document.getElementById("new_password");
-            if (x.type === "password") {
-            x.type = "text";
-
-            } else {
-                x.type = "password";
-            }
-        } 
-        function showPass2() {
-
-            var x = document.getElementById("repeated_password");
-            if (x.type === "password") {
-            x.type = "text";
-
-            } else {
-                x.type = "password";
-            }
-        } 
-
-        function passmatch(){
-            var x = document.getElementById("new_password").value;
-            
-            var y = document.getElementById("repeated_password").value;
-            
-            var messageElement = document.getElementById("message");
-
-            if(x == y){
-                
-                messageElement.textContent = "Registered Successfully.";
-
-                let username = document.getElementById("new_username").value;
-                let password = document.getElementById("new_password").value;
-
-      //localstorage
-                localStorage.setItem('username', username);
-                localStorage.setItem('password', password);
-
-                alert("Details saved in local storage");
-            }
-            else{
-                messageElement.textContent = "Fields do not match. Please try again.";
-                document.getElementById("repeated_password").value = "";
-            }
-        }
+        <div>
+          <button type="button" onclick="passmatch()">Register</button>
+        </div>
 
         
-        
-    </script>
+
+        <div>
+          <p id="message"></p>
+        </div>
+      </form>
+    </div>
+  </body>
+  <script src="registration.js"></script>
 </html>
