@@ -1,8 +1,8 @@
 
 
 exports.authenticateUser = function (res, body, mySess, myCallback) {
-    var empUsername = body.username;
-    var empPassword = body.password
+    var Username = body.username;
+    var Password = body.password
     con = this.connectToDB();
     con.connect(function (err) {
         if (err) throw err;
