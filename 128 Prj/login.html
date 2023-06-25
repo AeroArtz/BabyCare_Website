@@ -2,10 +2,11 @@
 <html>
     <head>
         <title>LOGIN</title>
+
         <link rel="stylesheet" type="text/css" href="login.css">
     </head>
     <body>
-        <script src="loginValidation.js"></script>
+        
         <div class="navbar">
             <a href="registration_page.html">Log out</a>
             <a href="registration_page.html">Sign up</a>
@@ -19,11 +20,11 @@
                 <h2>Sign in </h2>
             <div class="form">
                 <label id="label" for="username">Username:  </label>
-                <input type="text" id="username" placeholder="username">
+                <input type="text" id="username" name="username" placeholder="username" required>
         </div>
         <div class="form">
                 <label id="label" for="pasword">Password:</label>
-                <input type="password" id="password"  placeholder="Password">
+                <input type="password" id="password" name="password"  placeholder="Password" required>
         </div>
         <p id="displayErr" ></p>
                 <button id="button" type="submit">Sign in</button>
