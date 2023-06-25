@@ -11,6 +11,7 @@ exports.authenticateUser = function (res, body, mySess, myCallback) {
             if (err) throw err;
             if (result !== undefined && result.length > 0) {
                 myCallback(res, mySess, result[0].username, body);
+                res.redirect("/homepage.html");
             }
             else {
 
