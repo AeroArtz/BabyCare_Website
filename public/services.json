@@ -1,0 +1,30 @@
+{
+    "services":[
+    {
+        "title": "Newborn Care and Support",
+        "price" : 100
+    },
+    {
+        "title":"Breastfeeding Consultation",
+        "price":100
+    },
+    {
+        "title":"Parenting Workshops",
+        "price":100
+    },
+    {
+        "title":"Sleep Coaching",
+        "price":100
+    },
+    {
+        "title":"Postpartum Support",
+        "price":100
+    },
+    {
+        "title":"Parent-Child Bonding Sessions",
+        "price":100
+    }]
+
+
+
+}
