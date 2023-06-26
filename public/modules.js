@@ -107,33 +107,108 @@ exports.login = function (res) {   // to display error message if there is any.
         return res.end();
     });
 };
+/*
+exports.auth_user = function (res, body) {
+  var username = body.username;
+  var password = body.password;
+
+  // Connect to the database.
+  con = this.connectToDB();
+  con.connect(function (err) {
+    if (err) throw err;
+    // Get user record.
+    var sql = "SELECT * FROM users_info WHERE username = ?";
+    con.query(sql, [username], function (err, result) {
+      if (err) throw err;
+      if (result !== undefined && result.length > 0) {
+        var user = result[0];
+        // Compare the hashed password with the provided password
+        bcrypt.compare(password, user.password, function (err, passwordMatch) {
+          if (err) throw err;
+          if (passwordMatch) {
+            // Passwords match, redirect to the homepage
+            fs.readFile('./public/homepage.html', function (err, data) {
+              if (err) throw err;
+              return res.end(data);
+            });
+          } else {
+            // Passwords don't match, show error message on the login page
+            fs.readFile("./public/login.html", function (err, data) {
+              res.writeHead(404, { 'Content-Type': 'text/html' });
+              res.write(data);
+              res.write("<script>document.getElementById(\"displayErr\").innerHTML = \"You have entered an incorrect username or password!\";</script> ");
+              return res.end();
+            });
+          }
+        });
+      } else {
+        // User not found, show error message on the login page
+        fs.readFile("./public/login.html", function (err, data) {
+          res.writeHead(404, { 'Content-Type': 'text/html' });
+          res.write(data);
+          res.write("<script>document.getElementById(\"displayErr\").innerHTML = \"You have entered an incorrect username or password!\";</script> ");
+          return res.end();
+        });
+      }
+    });
+  });
+};
+*/
 
 exports.registerUser = function (res, body) {
-    
     var firstname = body.firstname;
-    console.log(firstname);
-    let lastname = body.lastname;
-    console.log(lastname);
-    let username = body.username;
-    console.log(username);
+    var lastname = body.lastname;
+    var username = body.username;
     var email = body.email;
-    console.log(email);
     var password = body.password;
-    console.log(password);
-    con = this.connectToDB();
-    con.connect( function(err){
+    var repeatedPassword = body.pass2;
+  
+    if (password !== repeatedPassword) {
+      // Passwords don't match, send error message
+      fs.readFile("registration_page.html", function (err, data) {
+        if (err) {
+          res.writeHead(404, { 'Content-Type': 'text/html' });
+          return res.end("404 Not Found");
+        }
+        var modifiedData = data.toString().replace('<p id="message"></p>', '<p id="message">Passwords do not match</p>');
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(modifiedData);
+        return res.end();
+      });
+    } else {
+      // Passwords match, check username and email availability
+      con = this.connectToDB();
+      con.connect(function (err) {
         if (err) throw err;
-        var sql = "INSERT INTO users_info(firstname,lastname,username,email_id,pass,dateof_reg) values('"+firstname+"','"+lastname+"','"+username+"','"+email+"','"+password+"',CURDATE()"+")";
-        con.query(sql, function (err, result) {
-            if (err) throw err;
-            console.log("user added successfully")
-        })
+        var selectQuery = "SELECT * FROM users_info WHERE username = ? OR email_id = ?";
+        con.query(selectQuery, [username, email], function (err, result) {
+          if (err) throw err;
+          if (result.length > 0) {
+            // Username or email already taken, send error message
+            fs.readFile("registration_page.html", function (err, data) {
+              if (err) {
+                res.writeHead(404, { 'Content-Type': 'text/html' });
+                return res.end("404 Not Found");
+              }
+              var modifiedData = data.toString().replace('<p id="message"></p>', '<p id="message">Username or email already in use</p>');
+              res.writeHead(200, { 'Content-Type': 'text/html' });
+              res.write(modifiedData);
+              return res.end();
+            });
+          } else {
+            // Username and email are available, proceed with registration
+            bcrypt.hash(password, 10, function (err, hashedPassword) {
+              if (err) throw err;
+  
+              var sql = "INSERT INTO users_info(firstname,lastname,username,email_id,password,dateof_reg) values(?,?,?,?,?,SYSDATE())";
+              con.query(sql, [firstname, lastname, username, email, hashedPassword], function (err, result) {
+                if (err) throw err;
+                console.log("User added successfully");
+                res.writeHead(302, { 'Location': '/login.html' });
+                return res.end();
+              });
+            });
+          }
+        });
+      });
     }
-    
-    
-    
-    )
-
-
-
-};
