@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="homepageStyle.css">
+    </head>
+    <body>
+        
+        <ul>
+            
+            <li><a href="login_page">Log In</a></li>
+            <li><a href="registration_page">Sign up</a></li>
+            <li ><a href="services">Services</a></li>
+            <li ><a href="viewServices" >View Services</a></li>
+            <li><a href="home">Home</a></li>
+            
+        </ul>
+
+        <div id="hero">
+            <img src="p1.jpg">
+            <div id="home-text">
+                <h2>Looking for newborn baby care?</h2>
+
+                <p>Empowering new parents with expert care, guidance, and unforgettable bonding experiences to embrace the joy of parenting!</p>
+                    
+                <button>Our services</button>
+            </div>
+        </div>
+        <div id="lowerSection">
+            <h3>WHY US?</h3>
+
+            <table id="homeTable">
+                <tr>
+                    <td width="170px">
+                        <img src="shake.png" width="100px">
+                        
+                    </td>
+                    <td width="170px">
+                        <img src="table.png" width="90px">
+                        
+                    </td>
+                    <td width="170px">
+                        <img src="time.png" width="80px">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="170px">
+                        <p>Our employees are certified professionals</p>
+                    </td>
+                    <td width="170px">
+                        <p>Book service our service at any time</p>
+                    </td>
+                    <td width="170px">
+                        <p>
+                            Our support team is available 24//7
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+
+        
+         
+        
+        
+        <script>
+            function redirectUser(){
+                
+                console.log(0);
+                window.location.href = 'services.html';
+                    
+                }
+                const servicesButton = document.querySelector('button');
+        servicesButton.addEventListener('click', function() {
+            window.location.href = 'services.html';
+        });
+                
+            
+            ;
+        </script>
+    </body>
+</html>
+
